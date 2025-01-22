@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/.venv": true,
+			"**/build": true
+		},
+		"search.exclude": {
+			"**/.venv": true,
+			"**/build": true
+		},
+		"python.analysis.exclude": [
+			"**/.venv",
+			"**/build"
+		],
+		"cSpell.enabled": true
+	}
+}

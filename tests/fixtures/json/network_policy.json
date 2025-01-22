@@ -1,0 +1,17 @@
+{
+    "name": "some_network_policy",
+    "allowed_network_rule_list": [
+        "static_database.public.static_network_rule_ingress_allow_all"
+    ],
+    "blocked_network_rule_list": [
+        "static_database.public.static_network_rule_ingress_suspicious_ip"
+    ],
+    "allowed_ip_list": [
+        "192.168.1.0/24"
+    ],
+    "blocked_ip_list": [
+        "192.168.1.99"
+    ],
+    "comment": "Comment for a network policy",
+    "owner": "SECURITYADMIN"
+}

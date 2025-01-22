@@ -1,0 +1,17 @@
+{
+    "name": "EXTERNAL_STAGE_EXAMPLE",
+    "url": "s3://snowbytes-snowflake/",
+    "owner": "SYSADMIN",
+    "type": "EXTERNAL",
+    "storage_integration": null,
+    "credentials": null,
+    "encryption": {
+        "type": "AWS_SSE_KMS",
+        "kms_key_id": "alias/MyAliasName"
+    },
+    "directory": {
+        "enable": true,
+        "refresh_on_create": true
+    },
+    "comment": "This is an example of an external stage"
+}

@@ -1,0 +1,37 @@
+allowlist:
+  - "tag"
+  - "tag reference"
+  - "masking policy"
+
+grants:
+  - GRANT APPLY AGGREGATION POLICY ON ACCOUNT TO ROLE EVERY_PRIVILEGE
+  - GRANT APPLY PROJECTION POLICY ON ACCOUNT TO ROLE EVERY_PRIVILEGE
+  - GRANT APPLY ROW ACCESS POLICY ON ACCOUNT TO ROLE EVERY_PRIVILEGE
+  - GRANT APPLY TAG ON ACCOUNT TO ROLE EVERY_PRIVILEGE
+
+schemas:
+  - name: tagged_schema
+    database: static_database
+    tags:
+      static_database.public.static_tag: STATIC_TAG_VALUE
+
+tags:
+  - name: static_tag
+    database: static_database
+    schema: PUBLIC
+    comment: This is a static tag
+    allowed_values:
+      - STATIC_TAG_VALUE
+
+masking_policies:
+  - name: static_masking_policy
+    database: static_database
+    schema: public
+    args:
+      - name: email
+        data_type: VARCHAR
+    returns: VARCHAR(16777216)
+    body: "CASE WHEN current_role() IN ('ANALYST') THEN email ELSE '*********' END"
+    comment: Masks email addresses
+    exempt_other_policies: false
+    owner: SYSADMIN

@@ -1,0 +1,39 @@
+[tool.black]
+line-length = 120
+target-version = ['py39']
+include = '\.pyi?$'
+extend-exclude = '''
+# A regex preceded with ^/ will apply only to files and directories
+# in the root of the project.
+^/foo.py  # exclude a file named foo.py in the root of the project (in addition to the defaults)
+'''
+
+[tool.pyright]
+pythonVersion = '3.9'
+venvPath = ''
+venv = ''
+
+[tool.ruff]
+line-length = 120
+
+[tool.pytest.ini_options]
+addopts = "-n 48"
+markers = [
+    "requires_snowflake: Mark a test as requiring a Snowflake connection.",
+    "enterprise: Mark a test that only works on Enterprise Edition Snowflake.",
+    "standard: Mark a test that works on Standard Edition Snowflake.",
+]
+filterwarnings = [
+    "ignore:.*urllib3.contrib.pyopenssl.*:DeprecationWarning"
+]
+
+[tool.codespell]
+ignore-words-list = [
+    "priv",
+    "sproc",
+    "snowpark",
+    "pathspec",
+]
+skip = [
+    "./build/",
+]

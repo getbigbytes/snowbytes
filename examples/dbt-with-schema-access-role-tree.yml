@@ -1,0 +1,265 @@
+roles:
+# access roles 
+  - name: AR__DB__RAW_SNOWBYTES__RO
+    owner: SECURITYADMIN
+  - name: AR__DB__RAW_SNOWBYTES__RW
+    owner: SECURITYADMIN
+  - name: AR__DB__RAW_SNOWBYTES__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__RAW_SNOWBYTES__REFERENCE__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__RAW_SNOWBYTES__REFERENCE__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__RAW_SNOWBYTES__REFERENCE__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_2__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_2__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_2__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__DB__TRANSFORM_SNOWBYTES__RO
+    owner: SECURITYADMIN
+  - name: AR__DB__TRANSFORM_SNOWBYTES__RW
+    owner: SECURITYADMIN
+  - name: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__STG_REFERENCE__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__STG_REFERENCE__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__STG_REFERENCE__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_1__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_1__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_1__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_2__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_2__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_2__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__COMMON__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__COMMON__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__COMMON__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__MART_FINANCE__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__MART_FINANCE__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__MART_FINANCE__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__MART_OPERATIONS__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__MART_OPERATIONS__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__MART_OPERATIONS__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__RO
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__RW
+    owner: SECURITYADMIN
+  - name: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__WH__INGEST_SNOWBYTES__USE
+    owner: SECURITYADMIN
+  - name: AR__WH__INGEST_SNOWBYTES__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__WH__TRANSFORM_SNOWBYTES__USE
+    owner: SECURITYADMIN
+  - name: AR__WH__TRANSFORM_SNOWBYTES__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__WH__ADMIN_SNOWBYTES__USE
+    owner: SECURITYADMIN
+  - name: AR__WH__ADMIN_SNOWBYTES__ADMIN
+    owner: SECURITYADMIN
+  - name: AR__WH__REPORT_SNOWBYTES__USE
+    owner: SECURITYADMIN
+  - name: AR__WH__REPORT_SNOWBYTES__ADMIN
+    owner: SECURITYADMIN
+# functional roles
+  - name: FR__DB_ADMIN_SNOWBYTES
+    owner: SECURITYADMIN
+    comment: "Database manager."
+  - name: FR__INGEST_SNOWBYTES
+    owner: SECURITYADMIN
+    comment: "Owns the tables in your raw database, and connects to the loading warehouse."
+  - name: FR__TRANSFORM_SNOWBYTES
+    owner: SECURITYADMIN
+    comment: "Has query permissions on tables in raw database and owns tables in the analytics database. This is for dbt developers and scheduled jobs."
+  - name: FR__REPORT_SNOWBYTES
+    owner: SECURITYADMIN
+    comment: "Has permissions on the reporting layer in the analytics database only. This role is for data consumers, such as analysts and BI tools. These users will not have permissions to read data from the raw database."
+  - name: FR__OPERATIONS_SNOWBYTES
+    owner: SECURITYADMIN
+    comment: "Has permissions on the reporting layer and in the specific marts for the domain."
+  - name: FR__FINANCE_SNOWBYTES
+    owner: SECURITYADMIN
+    comment: "Has permissions on the reporting layer and in the specific marts for the domain."
+  - name: WH__ADMIN_SNOWBYTES  
+    owner: SECURITYADMIN
+    comment: "Warehouse manager."
+
+
+role_grants:
+
+# role hierarchy
+  - role: AR__DB__RAW_SNOWBYTES__RO
+    to_role: AR__DB__RAW_SNOWBYTES__RW
+  - role: AR__DB__RAW_SNOWBYTES__RW
+    to_role: AR__DB__RAW_SNOWBYTES__ADMIN
+  - role: AR__SC__RAW_SNOWBYTES__REFERENCE__RO
+    to_role: AR__SC__RAW_SNOWBYTES__REFERENCE__RW
+  - role: AR__SC__RAW_SNOWBYTES__REFERENCE__RW
+    to_role: AR__SC__RAW_SNOWBYTES__REFERENCE__ADMIN
+  - role: AR__SC__RAW_SNOWBYTES__REFERENCE__ADMIN
+    to_role: AR__DB__RAW_SNOWBYTES__ADMIN
+  - role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__RO
+    to_role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__RW
+  - role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__RW
+    to_role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__ADMIN
+  - role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__ADMIN
+    to_role: AR__DB__RAW_SNOWBYTES__ADMIN
+  - role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_2__RO
+    to_role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_2__RW
+  - role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_2__RW
+    to_role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_2__ADMIN
+  - role: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_2__ADMIN
+    to_role: AR__DB__RAW_SNOWBYTES__ADMIN
+  - role: AR__DB__TRANSFORM_SNOWBYTES__RO
+    to_role: AR__DB__TRANSFORM_SNOWBYTES__RW
+  - role: AR__DB__TRANSFORM_SNOWBYTES__RW
+    to_role: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__STG_REFERENCE__RO
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__STG_REFERENCE__RW
+  - role: AR__SC__TRANSFORM_SNOWBYTES__STG_REFERENCE__RW
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__STG_REFERENCE__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__STG_REFERENCE__ADMIN
+    to_role: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_1__RO
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_1__RW
+  - role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_1__RW
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_1__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_1__ADMIN
+    to_role: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_2__RO
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_2__RW
+  - role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_2__RW
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_2__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__STG_SOURCE_SYSTEM_2__ADMIN
+    to_role: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__COMMON__RO
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__COMMON__RW
+  - role: AR__SC__TRANSFORM_SNOWBYTES__COMMON__RW
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__COMMON__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__COMMON__ADMIN
+    to_role: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__MART_FINANCE__RO
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__MART_FINANCE__RW
+  - role: AR__SC__TRANSFORM_SNOWBYTES__MART_FINANCE__RW
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__MART_FINANCE__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__MART_FINANCE__ADMIN
+    to_role: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__MART_OPERATIONS__RO
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__MART_OPERATIONS__RW
+  - role: AR__SC__TRANSFORM_SNOWBYTES__MART_OPERATIONS__RW
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__MART_OPERATIONS__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__MART_OPERATIONS__ADMIN
+    to_role: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__RO
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__RW
+  - role: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__RW
+    to_role: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__ADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__ADMIN
+    to_role: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+  - role: AR__DB__RAW_SNOWBYTES__ADMIN
+    to_role: FR__DB_ADMIN_SNOWBYTES
+  - role: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+    to_role: FR__DB_ADMIN_SNOWBYTES
+  - role: AR__WH__ADMIN_SNOWBYTES__USE
+    to_role: FR__DB_ADMIN_SNOWBYTES
+  - role: FR__DB_ADMIN_SNOWBYTES
+    to_role: SYSADMIN
+  - role: AR__DB__RAW_SNOWBYTES__RW
+    to_role: FR__INGEST_SNOWBYTES
+  - role: AR__WH__INGEST_SNOWBYTES__USE
+    to_role: FR__INGEST_SNOWBYTES
+  - role: FR__INGEST_SNOWBYTES
+    to_role: SYSADMIN
+  - role: AR__DB__RAW_SNOWBYTES__RO
+    to_role: FR__TRANSFORM_SNOWBYTES
+  - role: AR__DB__TRANSFORM_SNOWBYTES__RW
+    to_role: FR__TRANSFORM_SNOWBYTES
+  - role: AR__WH__TRANSFORM_SNOWBYTES__USE
+    to_role: FR__TRANSFORM_SNOWBYTES
+  - role: FR__TRANSFORM_SNOWBYTES
+    to_role: SYSADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__RO
+    to_role: FR__REPORT_SNOWBYTES
+  - role: AR__WH__TRANSFORM_SNOWBYTES__USE
+    to_role: FR__REPORT_SNOWBYTES
+  - role: FR__REPORT_SNOWBYTES
+    to_role: SYSADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__RO
+    to_role: FR__OPERATIONS_SNOWBYTES
+  - role: AR__SC__TRANSFORM_SNOWBYTES__MART_OPERATIONS__RO
+    to_role: FR__OPERATIONS_SNOWBYTES
+  - role: AR__WH__REPORT_SNOWBYTES__USE
+    to_role: FR__OPERATIONS_SNOWBYTES
+  - role: FR__OPERATIONS_SNOWBYTES
+    to_role: SYSADMIN
+  - role: AR__SC__TRANSFORM_SNOWBYTES__REPORTING__RO
+    to_role: FR__FINANCE_SNOWBYTES
+  - role: AR__SC__TRANSFORM_SNOWBYTES__MART_FINANCE__RO
+    to_role: FR__FINANCE_SNOWBYTES
+  - role: AR__WH__REPORT_SNOWBYTES__USE
+    to_role: FR__FINANCE_SNOWBYTES
+  - role: FR__FINANCE_SNOWBYTES
+    to_role: SYSADMIN
+  - role: AR__WH__ADMIN_SNOWBYTES__ADMIN
+    to_role: WH__ADMIN_SNOWBYTES
+  - role: AR__WH__TRANSFORM_SNOWBYTES__ADMIN
+    to_role: WH__ADMIN_SNOWBYTES
+  - role: AR__WH__INGEST_SNOWBYTES__ADMIN
+    to_role: WH__ADMIN_SNOWBYTES
+  - role: AR__WH__REPORT_SNOWBYTES__ADMIN
+    to_role: WH__ADMIN_SNOWBYTES
+  - role: WH__ADMIN_SNOWBYTES
+    to_role: SYSADMIN
+
+databases:
+  - name: raw_snowbytes
+    owner: AR__DB__RAW_SNOWBYTES__ADMIN
+    comment: "This database contains your raw data. This is the landing pad for everything extracted and loaded, as well as containing external stages for data living in S3. Access to this database is strictly permissioned."
+    schemas:
+      - name: reference
+        owner: AR__SC__RAW_SNOWBYTES__REFERENCE__ADMIN
+        managed_access: true
+      - name: source_system_1
+        owner: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__ADMIN
+        managed_access: true
+      - name: source_system_2
+        managed_access: true
+        owner: AR__SC__RAW_SNOWBYTES__SOURCE_SYSTEM_1__ADMIN
+  - name: transform_snowbytes
+    owner: AR__DB__TRANSFORM_SNOWBYTES__ADMIN
+    comment: "This database contains tables and views accessible to analysts and reporting. Everything in analytics is created and owned by dbt."
+    schemas:
+      - name: stg_reference
+      - name: stg_source_system_1
+      - name: stg_source_system_2
+      - name: common
+      - name: mart_operations
+      - name: mart_finance
+      - name: reporting

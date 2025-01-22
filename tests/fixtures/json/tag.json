@@ -1,0 +1,10 @@
+{
+    "name": "cost_center",
+    "owner": "SYSADMIN",
+    "comment": "cost_center tag",
+    "allowed_values": [
+        "finance",
+        "engineering",
+        "sales"
+    ]
+}

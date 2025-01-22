@@ -1,0 +1,1 @@
+CREATE SHARE SOME_SHARE COMMENT = 'A share for testing';

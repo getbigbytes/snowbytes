@@ -1,0 +1,13 @@
+{
+    "name": "INTERNAL_STAGE_EXAMPLE",
+    "owner": "SYSADMIN",
+    "type": "INTERNAL",
+    "encryption": {
+        "type": "SNOWFLAKE_SSE"
+    },
+    "directory": {
+        "enable": true,
+        "refresh_on_create": false
+    },
+    "comment": "This is an example of an internal stage."
+}
